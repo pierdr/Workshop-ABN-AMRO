@@ -9,29 +9,64 @@
 	<!-- LOGIC -->
 		<script type="text/javascript">
 			/** global variables**/
-			var board1;
+			var iphone;
+			var orientations=["","Portrait","PortraitUpsideDown","LandscapeLeft","LandscapeRight","FacingUp","FacingDown"];
 
 			/** runtime code**/
 			$(function(){
-				board1=new BFtObject();
-				board1.start("10.8.38.9",function(){
-					alert("connected");
-					board1.blinkColorEmbedded(0,10,10,35);
+				iphone=new BFtObject();
+				
+				$("#startButton").on("click",function(){
+					iphone.start($('#ipInput').val(),function(e){
+						$('button').removeAttr('disabled');
+						
+						alert("iphone connected");
+						iphone.setColor(255, 0, 0, 128);
+					});
+				});
+				$("#subscribeButton").on("click",function(){
+					iphone.subscribeOrientation(function(ip,e){
+					$('#orientationContent').html(orientations[e-0]);
+					});
 				});
 
-				$("#setAllColors").on("click",function(){
-					board1.setAllColorEmbedded(50, 0, 0, 0);
-						
+				$("#unsubscribeButton").on("click",function(){
+					iphone.releaseOrientation()
 				});
 				
 			});
 		</script>
 	</head>
 <body>
-	<h1>Tramontana multilights</h1><br/>
+	<h1>Tramontana Mobile</h1><br/>
 	
+		<div style="padding-bottom: 150px;">
+		<h5>To get started download the Tramontana App on your iOS device:</h5>
+		<a href="https://itunes.apple.com/us/app/tramontana/id1121069555?mt=8"><img src="https://darksky.net/app/images/appleAppStoreBadgeBig.png" alt="" width="150px"></a>
+		</div>
 
-	<button id="setAllColors"> set all lights red </button><br/>
+		<!-- OPEN SOCKET -->
+		<label>IPAddress</label>
+		<input type="text" id="ipInput" placeholder="192.168.1.1">
+		<button id="startButton">start</button><br/>
+		<!------------------------------
+			ORIENTATION
+		-------------------------------->
+		
+			<p><b>Orientation</b></p>
+			<p style="font-size:12px"> Note: check that your phone is not orientation locked.</p>
+			<button id="subscribeButton" >subscribe orientation</button>
+			<button id="unsubscribeButton" >unsubscribe orientation</button>
+			<!-- ADD CONTENT -->
+			<div style="padding:10px">Orientation:<span id="orientationContent">unknown</span></div>
+
+		<div style="padding-top: 100px">
+			<b>More examples <a href="https://github.com/pierdr/tramontana">here</a>.</b>
+
+		</div>
+		
+
+	
 	
 </body>
 </html>

@@ -9,29 +9,40 @@
 	<!-- LOGIC -->
 		<script type="text/javascript">
 			/** global variables**/
-			var board1;
-
+			
+			var getData=function(){
+				$.getJSON( "../data/rain.json", function( data ) {
+						/** PRINT A CONSOLE WITH THE DATA DOWNLOADED**/
+						console.log(data);
+						//** THIS IS A FOR LOOP, it repeats the code for the number of element that data has inside**//
+						for(var i=0;i<data.length;i++)
+						{
+							var listElement=document.createElement('li');
+							$(listElement).html(data[i]);
+							$("#list").append(listElement);
+						}
+					});
+			}
 			/** runtime code**/
 			$(function(){
-				board1=new BFtObject();
-				board1.start("10.8.38.1",function(){
-					alert("connected");
-					board1.blinkColorEmbedded(0,10,10,35);
-				});
+				
 
-				$("#setAllColors").on("click",function(){
-					board1.setAllColorEmbedded(50, 0, 0, 0);
-						
-				});
+
 				
 			});
 		</script>
 	</head>
 <body>
-	<h1>Tramontana multilights</h1><br/>
-	
+	<h1>API</h1><br/>
+	<button id="button" onclick="getData()">Get data from API</button>
+	<div>
+		<ul id="list">
+			
+		</ul>
 
-	<button id="setAllColors"> set all lights red </button><br/>
+	</div>
+
+	
 	
 </body>
 </html>
