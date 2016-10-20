@@ -18,20 +18,27 @@
 					alert("connected");
 					board1.blinkColorEmbedded(0,10,10,35);
 				});
+				/** set all Pir**/
+				$("#subscribePir").on("click",function(){
+					board1.subscribePir(function(){
+						$.ajax( "https://maker.ifttt.com/trigger/pir/with/key/pYQdUs6BFjbr5dmAlm8VAHy22YFNXjV45WUVD4ERXxx" )
+						alert("Pir triggered");
+					});	
 
-				$("#setServo").on("click",function(){
-					
-					board1.setServoEmbedded(0, $("#myRange").val());	
+				});
+				$("#unsubscribePir").on("click",function(){
+					board1.releasePir();	
 				});
 				
 			});
 		</script>
 	</head>
 <body>
-	<h1>Tramontana example</h1><br/>
-	<input type="range" id="myRange" min="10" max="170" value="90">
+	<h1>Tramontana PIR</h1><br/>
+	
 
-	<button id="setServo"> set servo </button><br/>
+	<button id="subscribePir">   subscribe PIR </button><br/>
+	<button id="unsubscribePir"> unsubscribe PIR </button><br/>
 	
 </body>
 </html>
