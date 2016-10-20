@@ -1,0 +1,37 @@
+<html>
+	<head>
+	<!-- IMPORT LIBRARIES FROM A REMOTE SOURCE -->
+	<!-- import jquery-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<!-- import tramontana-->
+		<script src="https://rawgit.com/pierdr/tramontana/master/lib/bft_min.js"></script>
+
+	<!-- LOGIC -->
+		<script type="text/javascript">
+			/** global variables**/
+			var board1;
+
+			/** runtime code**/
+			$(function(){
+				board1=new BFtObject();
+				board1.start("10.8.38.1",function(){
+					alert("connected");
+					board1.blinkColorEmbedded(0,10,10,35);
+				});
+
+				$("#setServo").on("click",function(){
+					
+					board1.setServoEmbedded(0, $("#myRange").val());	
+				});
+				
+			});
+		</script>
+	</head>
+<body>
+	<h1>Tramontana example</h1><br/>
+	<input type="range" id="myRange" min="10" max="170" value="90">
+
+	<button id="setServo"> set servo </button><br/>
+	
+</body>
+</html>

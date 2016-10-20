@@ -1,0 +1,40 @@
+<html>
+	<head>
+	<!-- IMPORT LIBRARIES FROM A REMOTE SOURCE -->
+	<!-- import jquery-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
+	<!-- WRITE JAVASCRIPT IN THE HEADER -->
+	<!-- Inside the javascript -->	
+		<script type="text/javascript">
+			/******
+			Declare global variables
+			
+			* variables declared in this section will be accessible everywhere.
+			*******/
+			//--------------------------------------
+			var testConsole=function(){
+				console.log("test!");
+			}
+			//--------------------------------------
+			/********
+			RUNTIME LOGIC 
+			*********/
+			$(function(){
+					/** Your code here!**/
+					
+					/** With the code below we are able to attach functionalities to any element of the page that has an id in the HTML tag. To call an object with id you need to add a # before the id-name.**/
+					$("#THE_BUTTON").on("click",function(){
+
+					});
+
+			});
+		</script>
+	</head>
+<body>
+	<h1>Button Test</h1><br/>
+	<button onclick="alert('Hi')">Hi</button><br/>
+	<button onclick="testConsole()">Test Console</button><br/>
+	<button id="THE_BUTTON">Button</button>
+</body>
+</html>

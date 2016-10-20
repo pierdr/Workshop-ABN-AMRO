@@ -1,0 +1,37 @@
+<html>
+	<head>
+	<!-- IMPORT LIBRARIES FROM A REMOTE SOURCE -->
+	<!-- import jquery-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<!-- import tramontana-->
+		<script src="https://rawgit.com/pierdr/tramontana/master/lib/bft_min.js"></script>
+
+	<!-- LOGIC -->
+		<script type="text/javascript">
+			/** global variables**/
+			var board1;
+
+			/** runtime code**/
+			$(function(){
+				board1=new BFtObject();
+				board1.start("10.8.38.9",function(){
+					alert("connected");
+					board1.blinkColorEmbedded(0,10,10,35);
+				});
+
+				$("#setAllColors").on("click",function(){
+					board1.setAllColorEmbedded(50, 0, 0, 0);
+						
+				});
+				
+			});
+		</script>
+	</head>
+<body>
+	<h1>Tramontana multilights</h1><br/>
+	
+
+	<button id="setAllColors"> set all lights red </button><br/>
+	
+</body>
+</html>
